@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>表單App</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="icon" href="/forms-app-web/favicon.ico"/>    <link rel="manifest" href="/forms-app-web/manifest.webmanifest" />
+    <meta name="theme-color" content="#1a73e8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="表單App" />
+    <meta name="application-name" content="表單App" />
+    <link rel="apple-touch-icon" href="/forms-app-web/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/forms-app-web/icons/icon-192.png" />
+  </head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  <script src="/forms-app-web/_expo/static/js/web/index-37a7f3c80718caedf02ca3b360f09294.js" defer></script>
+  <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/forms-app-web/sw.js', { scope: '/forms-app-web/' }).catch(function () {});
+        });
+      }
+    </script>
+</body>
+</html>
