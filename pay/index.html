@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>台中的民數記｜台中市召會特會行動報名系統</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="icon" href="/forms-app-web/favicon.ico"/>    <link rel="manifest" href="/forms-app-web/manifest.webmanifest" />
+    <meta name="theme-color" content="#2E652E" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="民數記" />
+    <meta name="application-name" content="台中的民數記" />
+    <link rel="apple-touch-icon" href="/forms-app-web/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/forms-app-web/icons/icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="/forms-app-web/icons/emblem.svg" />
+    <meta name="description" content="台中的民數記｜台中市召會特會行動報名系統：分梯次報名、大區統計、匯出名單" />
+  </head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  <script src="/forms-app-web/_expo/static/js/web/index-e541294235d8af379f2daf070e6d4c45.js" defer></script>
+  <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/forms-app-web/sw.js', { scope: '/forms-app-web/' }).catch(function () {});
+        });
+      }
+    </script>
+</body>
+</html>
