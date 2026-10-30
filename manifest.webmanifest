@@ -1,15 +1,15 @@
 {
-  "name": "表單App",
-  "short_name": "表單App",
-  "description": "活動報名表單：建立表單、分梯次報名、報名統計與匯出名單",
+  "name": "台中的民數記",
+  "short_name": "民數記",
+  "description": "台中的民數記｜特會行動報名系統：分梯次報名、大區統計、匯出名單",
   "lang": "zh-Hant-TW",
   "id": "/forms-app-web/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f5f7fb",
-  "theme_color": "#1a73e8",
+  "background_color": "#F4F2EE",
+  "theme_color": "#A76C2F",
   "icons": [
     {
       "src": "icons/icon-192.png",

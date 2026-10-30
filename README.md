@@ -1,4 +1,4 @@
-# 表單App（網頁版 / PWA）
+# 台中的民數記（特會行動報名系統，網頁版 / PWA）
 
 此 repo 只放自動建置的靜態檔，請勿直接修改。網址：https://isaiahovercomer.github.io/forms-app-web/
 
