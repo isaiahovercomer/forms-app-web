@@ -1,9 +1,9 @@
 /* 台中的民數記 service worker：離線也能開啟 App 外殼。
  * 只快取本站（同源）的靜態檔；Google API、Apps Script、OAuth 等跨網域請求一律不攔截、不快取。
  * 快取版本號與預快取清單由 scripts/build-web.mjs 在建置時填入。 */
-const CACHE = 'forms-app-be08aa6507a8';
+const CACHE = 'forms-app-119807a4ceb7';
 const SCOPE = self.registration.scope; // 例：https://isaiahovercomer.github.io/forms-app-web/
-const PRECACHE = ["./","_expo/static/js/web/index-b2b9a32b9b5bbc24613c671d411c86ec.js","assets/assets/brand/lsm-seal.0178822bb4251375fbff7dd1182080c8.png","favicon.ico","icons/apple-touch-icon.png","icons/emblem.svg","icons/favicon-48.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-192.png","icons/maskable-512.png","manifest.webmanifest"];
+const PRECACHE = ["./","_expo/static/js/web/index-d6daca1489ebcb0988351f75ccaecdab.js","assets/assets/brand/lsm-seal.0178822bb4251375fbff7dd1182080c8.png","favicon.ico","icons/apple-touch-icon.png","icons/emblem.svg","icons/favicon-48.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-192.png","icons/maskable-512.png","manifest.webmanifest"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
