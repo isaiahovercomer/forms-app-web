@@ -1,9 +1,9 @@
 /* 台中的民數記 service worker：離線也能開啟 App 外殼。
  * 只快取本站（同源）的靜態檔；Google API、Apps Script、OAuth 等跨網域請求一律不攔截、不快取。
  * 快取版本號與預快取清單由 scripts/build-web.mjs 在建置時填入。 */
-const CACHE = 'forms-app-e05bd7055bb6';
+const CACHE = 'forms-app-98488da37dd9';
 const SCOPE = self.registration.scope; // 例：https://isaiahovercomer.github.io/forms-app-web/
-const PRECACHE = ["./","_expo/static/js/web/AdminsScreen-d50bc07c9633a3cdf6385426b250dae8.js","_expo/static/js/web/EventAdminScreen-6ecc8c1da2dc78f2fb92a7df05d58d08.js","_expo/static/js/web/EventReportScreen-d93a460412d2d399aa350a7bbb682b85.js","_expo/static/js/web/FormAdminsScreen-328cdeb610fffbb4fcfd44c00bcda6d4.js","_expo/static/js/web/FormEditorScreen-f7b317b185f2f8bbb89326d664a8ae84.js","_expo/static/js/web/MyFormsScreen-ab4e0aac35bacfb25a7fffd7294a0f41.js","_expo/static/js/web/ParticipantProfileScreen-cc4f584694199a45ffdbb1e2845279fb.js","_expo/static/js/web/ParticipantsScreen-c07061e628ce45195880e8ed7b3ab952.js","_expo/static/js/web/PaymentsScreen-9bb70489d065cd161f943b0b9ab1143f.js","_expo/static/js/web/ResponsesScreen-b665fc36e2d43222b8852f16f4906050.js","_expo/static/js/web/ShareScreen-8b2981e419d545226ad8b07a7e33ca44.js","_expo/static/js/web/StatsScreen-4bd5d1a8cce1386782bd6d83f7f98f4a.js","_expo/static/js/web/__common-90778aa4b2fe99bafda0f7d5144b0c88.js","_expo/static/js/web/__expo-metro-runtime-8c088df87a31e4e6accd81c554ec290d.js","_expo/static/js/web/index-c450db7c7d70fb08284b147998460e4a.js","assets/assets/brand/lsm-seal.0178822bb4251375fbff7dd1182080c8.png","favicon.ico","icons/apple-touch-icon.png","icons/emblem.svg","icons/favicon-48.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-192.png","icons/maskable-512.png","manifest.webmanifest","og-image.png"];
+const PRECACHE = ["./","_expo/static/js/web/AdminsScreen-784709985239abf821e561f2e34a6e75.js","_expo/static/js/web/EventAdminScreen-b82a2253e3310ea7a61b365cd9953554.js","_expo/static/js/web/EventReportScreen-b1745f6bb281ed33f91e9abbbbd95364.js","_expo/static/js/web/FormAdminsScreen-1c463a0738e78fd7b7ab2c746ae31a50.js","_expo/static/js/web/FormEditorScreen-837b73798adcd691a5f4f934c94d24c9.js","_expo/static/js/web/MyFormsScreen-d31643bae9c7438592f52f1f8eae4a9f.js","_expo/static/js/web/ParticipantProfileScreen-ac5871c7b483645db5baf764a9524cdc.js","_expo/static/js/web/ParticipantsScreen-4fa805b460f3de45ace27938fe630abf.js","_expo/static/js/web/PaymentsScreen-85597593239dc9304f8ee29f4d169be0.js","_expo/static/js/web/ResponsesScreen-9fdb1b62eb618b5a201cf395a56d3e13.js","_expo/static/js/web/ShareScreen-25ac44e5aec77f392b5f0ca16242011f.js","_expo/static/js/web/StatsScreen-7f9d3dce309d3481b56b0dd0ff066acb.js","_expo/static/js/web/__common-279d4d1cc34f970242040aec5c210538.js","_expo/static/js/web/__expo-metro-runtime-8c088df87a31e4e6accd81c554ec290d.js","_expo/static/js/web/index-49a2de376d1031e31e538dc9c946d43d.js","assets/assets/brand/lsm-seal.0178822bb4251375fbff7dd1182080c8.png","favicon.ico","icons/apple-touch-icon.png","icons/emblem.svg","icons/favicon-48.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-192.png","icons/maskable-512.png","manifest.webmanifest","og-image.png"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -18,13 +18,14 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) =>
-        Promise.all(
-          keys
-            .filter((key) => key.startsWith('forms-app-') && key !== CACHE)
-            .map((key) => caches.delete(key)),
-        ),
-      )
+      .then((keys) => {
+        // 第十九輪 D(b)：保留上一版的快取。正在填寫的舊頁面之後要載入的檔案還找得到，
+        // 不會因為新版上線而讀不到檔案、整頁重來（填到一半的資料不見）。只刪更舊的版本。
+        // 也不會主動重新整理任何頁面：新版只在下次開啟時生效。
+        const old = keys.filter((key) => key.startsWith('forms-app-') && key !== CACHE);
+        const keepPrevious = old.slice(-1);
+        return Promise.all(old.filter((key) => !keepPrevious.includes(key)).map((key) => caches.delete(key)));
+      })
       .then(() => self.clients.claim()),
   );
 });
